@@ -43,7 +43,7 @@ const styles = {
     },
     ulNotes: {
         borderTop: '1px solid #eee',
-        overFlowy: 'scroll',
+        overflowy: 'scroll',
         height: 'calc(100vh - 72px',
         listStyle: 'none',
         marginTop: '1rem',
@@ -75,7 +75,7 @@ const styles = {
         height: '100px',
         fontSize: '90%',
         cursor: 'pointer',
-        overFlow: 'hidden',
+        overflow: 'hidden',
     },
     liNote: {
         borderTop: '1px solid #eee',
@@ -96,9 +96,7 @@ const styles = {
         textDecoration: 'none !important',
     },
     liHoverNote: {
-        borderColor: {
-            borderColor: 'transparent',
-        }
+        borderColor: 'transparent',
     },
     liNoteTitle: {
         color: '#4a4a4a',
@@ -110,6 +108,25 @@ const styles = {
         oTextOverflow: 'ellipsis',
         textOverflow: 'ellipsis',
     },
+    liNoteBody: {
+        height: '54px',
+        overflow: 'hidden',
+        marginTop: '.5rem',
+    },
+    liNoteBodyStar: {
+        fontSize: '1rem!important',
+        margin: '0!important',
+        padding: '0!important',
+        color: '#999!important',
+        background: 'none',
+        border: 'none',
+    },
+    ulLiNote: {
+        display: 'block',
+        height: '100px',
+        padding: '1rem',
+        textDecoration: 'none',
+    }
 }
 
 export default NoteList

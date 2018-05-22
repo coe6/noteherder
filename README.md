@@ -2,7 +2,6 @@
 
 ## Homework
 
-* Add JSX and style to `NoteList` and `NoteForm`.
 
 ### Bonus Credit
 
