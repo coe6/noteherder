@@ -3,6 +3,7 @@ import React from 'react'
 import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
+import './Sidebar.css'
 
 const Sidebar = () => {
     return (
@@ -11,14 +12,14 @@ const Sidebar = () => {
                 <img src={quill} alt="Noteherder" style={styles.logoImg} />
             </div>
             
-            <a href="/notes">
-                <img src={newHover} alt="New note"/>
-                <img src={newIcon} alt="New note" />
+            <a href="/notes" style={styles.newNote}>
+                <img src={newHover} alt="New note" style={styles.newNoteImgHover}/>
+                <img src={newIcon} alt="New note" style={styles.newNoteImg}/>
             </a>
 
-            <div className="SignOut">
-            <button>
-              <i className="fa fa-sign-out"></i>
+            <div className="SignOut" style={styles.signOut}>
+            <button style={styles.signOutButton}>
+              <i className="fa fa-sign-out" style={styles.signOutFA}></i>
             </button>
           </div>
         </div>
@@ -44,6 +45,36 @@ const styles = {
         width: '3rem',
         paddingLeft: '0.4rem',
 
+    },
+    newNote: {
+        marginTop: '2rem',
+        position: 'relative',
+        width: '40px',
+    },
+    button: {
+        backgroundColor: 'transparent',
+        border: '0',
+        color: '#008BF8',
+        cursor: 'pointer',
+    },
+    newNoteImg: {
+        position: 'absolute',
+        left: '0',
+        width: '100%',
+        transition: 'opacity 0.25s ease-in-out',
+    },
+    newNoteImgHover: {
+        opacity: '0',
+    },
+    signOut: {
+        position: 'absolute',
+        bottom: '1rem',
+    },
+    signOutButton: {
+        outline: 'none',
+    },
+    signOutFA: {
+        fontSize: '2rem',
     },
 }
 
