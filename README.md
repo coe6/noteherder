@@ -1,8 +1,8 @@
 # Noteherder
 
 ## Homework
-
+* Make delete button work
 
 ### Bonus Credit
 
-* Load a note into `NoteForm` when you click it in `NoteList`.
+* Persist the list of notes across page refreshes, using `localStorage`

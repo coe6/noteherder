@@ -2,7 +2,7 @@ import React from 'react'
 
 import './NoteForm.css'
 
-const NoteForm = ({ currentNote, saveNote }) => {
+const NoteForm = ({ currentNote, saveNote, deleteNote }) => {
     const handleChanges = (ev) => {
         const note = {...currentNote}
         note[ev.target.name] = ev.target.value
@@ -12,7 +12,7 @@ const NoteForm = ({ currentNote, saveNote }) => {
     return (
         <div className="NoteForm" style={styles.noteForm}>
             <div className="form-actions" style={styles.formActions}>
-                <button type="button" style={styles.button}>
+                <button type="button" style={styles.button} onClick={() => deleteNote(currentNote)}>
                     <i className="far fa-trash-alt" stlye={styles.buttonIFA}/>
                 </button>
             </div>
