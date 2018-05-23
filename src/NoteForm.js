@@ -7,7 +7,7 @@ const NoteForm = () => {
         <div className="NoteForm" style={styles.noteForm}>
             <div className="form-actions" style={styles.formActions}>
                 <button type="button" style={styles.button}>
-                    <i className="fa fa-trash-o" stlye={styles.buttonIFA}/>
+                    <i className="far fa-trash-alt" stlye={styles.buttonIFA}/>
                 </button>
             </div>
 

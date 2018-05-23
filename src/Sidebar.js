@@ -18,9 +18,9 @@ const Sidebar = () => {
                 <img src={newIcon} alt="New note" className={css(styles.newNoteImg, styles.newNoteImgHover)}/>
             </a>
 
-            <div className="SignOut" className={css(styles.signOut)}>
+            <div className={css(styles.signOut)}>
             <button className={css(styles.button)}>
-            <i className={`fa fa-sign-out ${css(styles.signOutIcon)}`}></i>
+            <i title="sign out" className={`fas fa-sign-out-alt ${css(styles.signOutIcon)}`}></i>
             </button>
         </div>
         </nav>
