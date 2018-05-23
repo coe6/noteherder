@@ -36,6 +36,10 @@
   .Sidebar a:hover img.outline {
     opacity: 0;
   }
+
+  .Sidebar a img.other {
+    opacity: 100%;
+  }
   
   .Sidebar .SignOut {
     position: absolute;

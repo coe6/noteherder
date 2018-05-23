@@ -1,32 +1,33 @@
 import React from 'react'
+import { StyleSheet, css } from 'aphrodite'
 
 import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
-import './Sidebar.css'
+//import './Sidebar.css'
 
 const Sidebar = () => {
     return (
-        <div className="Sidebar" style={styles.sidebar}>
-            <div className="logo" style={styles.logo}>
-                <img src={quill} alt="Noteherder" style={styles.logoImg} />
+        <nav className={css(styles.sidebar)}>
+            <div className={css(styles.logo)}>
+                <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
             </div>
             
-            <a href="/notes" style={styles.newNote}>
-                <img src={newHover} alt="New note" style={styles.newNoteImgHover}/>
-                <img src={newIcon} alt="New note" style={styles.newNoteImg}/>
+            <a className={css(styles.newNote)}href="/notes" >
+                <img src={newHover} alt="New note" className={css(styles.newNoteImg)}/>
+                <img src={newIcon} alt="New note" className={css(styles.newNoteImg, styles.newNoteImgHover)}/>
             </a>
 
-            <div className="SignOut" style={styles.signOut}>
-            <button style={styles.signOutButton}>
-              <i className="fa fa-sign-out" style={styles.signOutFA}></i>
+            <div className="SignOut" className={css(styles.signOut)}>
+            <button className={css(styles.button)}>
+            <i className={`fa fa-sign-out ${css(styles.signOutIcon)}`}></i>
             </button>
-          </div>
         </div>
+        </nav>
     )
 }
 
-const styles = {
+const styles = StyleSheet.create({
     sidebar: {
         width: '6rem',
         backgroundColor: '#f3f3f3',
@@ -44,7 +45,6 @@ const styles = {
     logoImg: {
         width: '3rem',
         paddingLeft: '0.4rem',
-
     },
     newNote: {
         marginTop: '2rem',
@@ -64,7 +64,9 @@ const styles = {
         transition: 'opacity 0.25s ease-in-out',
     },
     newNoteImgHover: {
-        opacity: '0',
+        ':hover': {
+            opacity: '0',
+        },
     },
     signOut: {
         position: 'absolute',
@@ -73,9 +75,9 @@ const styles = {
     signOutButton: {
         outline: 'none',
     },
-    signOutFA: {
+    signOutIcon: {
         fontSize: '2rem',
     },
-}
+})
 
 export default Sidebar
