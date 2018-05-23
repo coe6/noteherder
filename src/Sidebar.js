@@ -6,14 +6,20 @@ import newIcon from './new.png'
 import newHover from './new-hover.png'
 //import './Sidebar.css'
 
-const Sidebar = () => {
+const Sidebar = ({ resetCurrentNote}) => {
     return (
         <nav className={css(styles.sidebar)}>
             <div className={css(styles.logo)}>
                 <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
             </div>
             
-            <a className={css(styles.newNote)}href="/notes" >
+            <a 
+                className={css(styles.newNote)} 
+                href="/notes" 
+                onClick={(ev) => {
+                    ev.preventDefault()
+                    resetCurrentNote()}}
+                >
                 <img src={newHover} alt="New note" className={css(styles.newNoteImg)}/>
                 <img src={newIcon} alt="New note" className={css(styles.newNoteImg, styles.newNoteImgHover)}/>
             </a>
