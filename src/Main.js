@@ -4,12 +4,16 @@ import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
+
 class Main extends React.Component {
     constructor() {
         super()
+
+        const storedNotes = JSON.parse(localStorage.getItem('notes'))
+
         this.state = {
             currentNote: this.blankNote(),
-            notes: [],
+            notes: storedNotes,
         }
     }
 
@@ -32,7 +36,10 @@ class Main extends React.Component {
             notes[i] = note
         }
 
-        this.setState({ notes })
+        localStorage.setItem('notes', JSON.stringify(notes))
+        const storedNotes = JSON.parse(localStorage.getItem('notes'))
+        console.log(storedNotes)
+        this.setState({ notes: storedNotes })
         this.setCurrentNote(note)
     }
 
