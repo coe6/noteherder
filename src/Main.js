@@ -38,7 +38,6 @@ class Main extends React.Component {
 
         localStorage.setItem('notes', JSON.stringify(notes))
         const storedNotes = JSON.parse(localStorage.getItem('notes'))
-        console.log(storedNotes)
         this.setState({ notes: storedNotes })
         this.setCurrentNote(note)
     }
@@ -48,6 +47,7 @@ class Main extends React.Component {
         const index = notes.findIndex((currentNote => currentNote.id === note.id))
         notes.splice(index, 1)
 
+        localStorage.setItem('notes', JSON.stringify(notes))
         this.setState({ notes })
         this.setCurrentNote(this.blankNote())
     }
