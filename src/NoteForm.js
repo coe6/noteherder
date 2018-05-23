@@ -2,7 +2,13 @@ import React from 'react'
 
 import './NoteForm.css'
 
-const NoteForm = ({ currentNote }) => {
+const NoteForm = ({ currentNote, saveNote }) => {
+    const handleChanges = (ev) => {
+        const note = {...currentNote}
+        note[ev.target.name] = ev.target.value
+        saveNote(note)
+    }
+
     return (
         <div className="NoteForm" style={styles.noteForm}>
             <div className="form-actions" style={styles.formActions}>
@@ -17,13 +23,15 @@ const NoteForm = ({ currentNote }) => {
                         type="text" 
                         name="title" 
                         placeholder="Title your note" 
-                        value={currentNote.title} 
+                        value={currentNote.title}
+                        onChange={handleChanges}
                         style={styles.input}
                     />
                 </p>
                 <textarea 
                     name="body"
                     value={currentNote.body}
+                    onChange={handleChanges}
                     style={styles.textArea}
                 ></textarea>
             </form>
