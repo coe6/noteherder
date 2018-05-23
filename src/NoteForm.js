@@ -5,7 +5,7 @@ import './NoteForm.css'
 const NoteForm = () => {
     return (
         <div className="NoteForm" style={styles.noteForm}>
-            <div className="formActions" style={styles.formActions}>
+            <div className="form-actions" style={styles.formActions}>
                 <button type="button" style={styles.button}>
                     <i className="fa fa-trash-o" stlye={styles.buttonIFA}/>
                 </button>

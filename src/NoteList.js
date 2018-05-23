@@ -2,28 +2,52 @@ import React from 'react'
 
 import './NoteList.css'
 
-const NoteList = () => {
-    return (
-        <div className="NoteList" style={styles.noteList}>
-            <h3 style={styles.h3}>Notes</h3>
-            <div className="notes">
-                <ul style={styles.ulNotes}>
-                    <a className="active" style={styles.ulNotesA}>
-                        <li style={styles.li}>
-                            <div className="note" stlye={styles.liNote}>
-                                <div className="noteTitle">
+// const NoteList = () => {
+class NoteList extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            noteTitle: ['ABC', 'To Do List'],
+            noteBody: ['This is the alphbet', 'Buy butter, milk, eggs'],
+        }
+    }
+    render() {
+        return (
+            <div className="NoteList">
+                <h3>Notes</h3>
+                <div className="notes">
+                    <ul id="notes">
+                        <a className="active">
+                            {Object.keys(this.state.noteTitle).map(((value) => {
+                                return (
+                                    <li>
+                                        <div className="note">
+                                            <div className="note-title">
+                                                {this.state.noteTitle[value]}
+                                            </div>
+                                            <div className="note-body">
+                                            <p>{this.state.noteBody[value]}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            }))}
+                            {/* <li style={styles.li}>
+                                <div className="note" stlye={styles.liNote}>
+                                    <div className="noteTitle">
 
+                                    </div>
+                                    <div className="noteBody">
+                                        <p></p>
+                                    </div>
                                 </div>
-                                <div className="noteBody">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </li>
-                    </a>
-                </ul>
+                            </li> */}
+                        </a>
+                    </ul>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const styles = {
