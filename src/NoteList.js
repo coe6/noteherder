@@ -3,41 +3,14 @@ import React from 'react'
 import './NoteList.css'
 import Note from './Note'
 
-// const NoteList = () => {
-const NoteList = () => {
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         noteTitle: ['ABC', 'To Do List'],
-    //         noteBody: ['This is the alphbet', 'Buy butter, milk, eggs'],
-    //     }
-    // }
-
-    const notes = [
-        {
-            id: 1,
-            title: 'Note',
-            body: 'Body',
-        },
-        {
-            id: 2,
-            title: 'Note 2',
-            body: 'Body 2',
-        },
-        {
-            id: 3,
-            title: 'Note 3',
-            body: 'Body 3',
-        },
-    ]
-
+const NoteList = (props) => {
     return (
         <div className="NoteList">
             <h3>Notes</h3>
             <div className="notes">
                 <ul id="notes">
                     <a className="active">
-                        {notes.map(note => <Note note={note}/>)}
+                        {props.notes.map(note => <Note key={note.id} note={note}/>)}
                     </a>
                 </ul>
             </div>
