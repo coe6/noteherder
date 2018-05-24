@@ -41,7 +41,7 @@ class Main extends React.Component {
             const i = notes.findIndex((currentNote) => currentNote.id === note.id)
             notes[i] = note
         }
-        
+
         this.setState({ notes })
         this.setCurrentNote(note)
     }
@@ -68,9 +68,19 @@ class Main extends React.Component {
     render() {
         return (
             <div className="Main" style={style}>
-                <Sidebar resetCurrentNote={this.resetCurrentNote}/>
-                <NoteList notes={this.state.notes} setCurrentNote={this.setCurrentNote} />
-                <NoteForm currentNote={this.state.currentNote} saveNote={this.saveNote} deleteNote={this.deleteNote}/>
+                <Sidebar 
+                    resetCurrentNote={this.resetCurrentNote} 
+                    signOut={this.props.signOut}
+                />
+                <NoteList 
+                    notes={this.state.notes} 
+                    setCurrentNote={this.setCurrentNote} 
+                />
+                <NoteForm 
+                    currentNote={this.state.currentNote} 
+                    saveNote={this.saveNote} 
+                    deleteNote={this.deleteNote}
+                />
             </div>
         )
     }
