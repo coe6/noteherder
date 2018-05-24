@@ -2,8 +2,6 @@
 
 ## Homework
 
-* Add google auth
-
 ### Bonus Credit
 
 * If you're signed in, it briefly shows the SignIn component before Main. Fix that

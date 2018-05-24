@@ -10,6 +10,18 @@ class App extends Component {
     uid: null,
   }
 
+  componentWillMount() {
+    this.setState({ uid: JSON.parse(window.localStorage.getItem('uids')) })
+    
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        this.handleAuth(user)
+      } else {
+        this.signOut()
+      }
+    })
+  }
+
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if(user) {
@@ -22,6 +34,7 @@ class App extends Component {
 
   handleAuth = (user) => {
     this.setState({ uid: user.uid })
+    window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
   }
 
   signedIn = () => {
@@ -30,6 +43,7 @@ class App extends Component {
 
   signOut = () => {
     this.setState({ uid: null })
+    window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
     auth.signOut()
   }
 

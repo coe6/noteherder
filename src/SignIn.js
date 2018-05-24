@@ -6,7 +6,6 @@ import googleLogo from './google.svg'
 
 const SignIn = ({ handleAuth }) => {
     const authenticate = (provider) => {
-        console.log(provider)
         auth.signInWithPopup(provider)
     }
 
