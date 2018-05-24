@@ -3,6 +3,7 @@ import React from 'react'
 import { auth, githubProvider, googleProvider } from './base'
 import './SignIn.css'
 import googleLogo from './google.svg'
+import logo from './quill.svg'
 
 const SignIn = ({ handleAuth }) => {
     const authenticate = (provider) => {
@@ -13,7 +14,7 @@ const SignIn = ({ handleAuth }) => {
         <div className="SignIn">
 
             <header className="Header">
-                <img src="media/quill.svg" alt="" />
+                <img src={logo} alt="" />
                 <span className="title">Noteherder</span>
             </header>
             <main>
