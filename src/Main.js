@@ -3,18 +3,24 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
+import base from './base'
 
 
 class Main extends React.Component {
     constructor() {
         super()
-
-        const storedNotes = JSON.parse(localStorage.getItem('notes'))
-
         this.state = {
             currentNote: this.blankNote(),
-            notes: storedNotes || [],
+            notes: [],
         }
+    }
+
+    componentWillMount() {
+        base.syncState('notes', {
+            context: this,
+            state: 'notes',
+            asArray: true,
+        })
     }
 
     setCurrentNote = (note) => {
@@ -35,10 +41,8 @@ class Main extends React.Component {
             const i = notes.findIndex((currentNote) => currentNote.id === note.id)
             notes[i] = note
         }
-
-        localStorage.setItem('notes', JSON.stringify(notes))
-        const storedNotes = JSON.parse(localStorage.getItem('notes'))
-        this.setState({ notes: storedNotes })
+        
+        this.setState({ notes })
         this.setCurrentNote(note)
     }
 
@@ -47,7 +51,6 @@ class Main extends React.Component {
         const index = notes.findIndex((currentNote => currentNote.id === note.id))
         if(index > -1) {
             notes.splice(index, 1)
-            localStorage.setItem('notes', JSON.stringify(notes))
             this.setState({ notes })
         }
 
