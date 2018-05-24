@@ -45,10 +45,12 @@ class Main extends React.Component {
     deleteNote = (note) => {
         const notes = [...this.state.notes]
         const index = notes.findIndex((currentNote => currentNote.id === note.id))
-        notes.splice(index, 1)
+        if(index > -1) {
+            notes.splice(index, 1)
+            localStorage.setItem('notes', JSON.stringify(notes))
+            this.setState({ notes })
+        }
 
-        localStorage.setItem('notes', JSON.stringify(notes))
-        this.setState({ notes })
         this.setCurrentNote(this.blankNote())
     }
 
