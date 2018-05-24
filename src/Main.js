@@ -13,7 +13,7 @@ class Main extends React.Component {
 
         this.state = {
             currentNote: this.blankNote(),
-            notes: storedNotes,
+            notes: storedNotes || [],
         }
     }
 
