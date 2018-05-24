@@ -21,6 +21,15 @@ class Main extends React.Component {
             state: 'notes',
             asArray: true,
         })
+
+        //const notesArr = [...this.props.passNotes]   
+        console.log(this.props)
+
+    }
+
+    getNotes() {
+        const notesArr = [...this.props]   
+        console.log(notesArr)
     }
 
     setCurrentNote = (note) => {
