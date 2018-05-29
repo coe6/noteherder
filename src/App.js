@@ -9,7 +9,6 @@ import base from './base'
 class App extends Component {
   state = {
     uid: null,
-    userNotes: [],
   }
 
   componentWillMount() {
@@ -30,7 +29,6 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if(user) {
         this.handleAuth(user)
-        this.addNotes(user)
       } else {
         this.signOut()
       }
@@ -47,23 +45,6 @@ class App extends Component {
     return this.state.uid
   }
 
-  addNotes(user) {
-    const newUser = {
-      uid: this.state.uid,
-      notes: [],
-    }
-
-    const copy = [...this.state.userNotes]
-    const i = copy.findIndex((newUser) => newUser.id === user)
-    if(i < 0) {
-      copy.push(newUser)
-    }
-    this.setState({ userNotes: copy })
-    //window.localStorage.setItem('userNotes', JSON.stringify(copy))
-    console.log(copy)
-    return copy
-  }
-
   signOut = () => {
     this.setState({ uid: null })
     window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
@@ -76,7 +57,7 @@ class App extends Component {
       <div className="App">
         {
           this.signedIn() 
-            ? <Main signOut={this.signOut} userNotes={this.state.userNotes} /> 
+            ? <Main signOut={this.signOut} uid={this.state.uid} /> 
             : <SignIn handleAuth={this.handleAuth} />
         }
       </div>
