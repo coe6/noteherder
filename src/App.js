@@ -11,21 +11,11 @@ class App extends Component {
     uid: null,
   }
 
-  componentWillMount() {
-    this.setState({ uid: JSON.parse(window.localStorage.getItem('uids')) })
-    //this.setState({ userNotes: JSON.parse(window.localStorage.getItem('userNotes')) })
-    
-    auth.onAuthStateChanged((user) => {
-      if(user) {
-        this.handleAuth(user)
-      } else {
-        this.signOut()
-      }
-    })
-
-  }
-
   componentDidMount() {
+    const uid = localStorage.getItem('uid')
+    if(uid) {
+      this.setState({ uid })
+    }
     auth.onAuthStateChanged((user) => {
       if(user) {
         this.handleAuth(user)
@@ -37,7 +27,7 @@ class App extends Component {
 
   handleAuth = (user) => {
     this.setState({ uid: user.uid })
-    window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
+    localStorage.setItem('uid', user.uid)
     //window.localStorage.setItem('userNotes', JSON.stringify(this.state.userNotes))
   }
 
@@ -47,7 +37,7 @@ class App extends Component {
 
   signOut = () => {
     this.setState({ uid: null })
-    window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
+    localStorage.removeItem('uid')
     //window.localStorage.setItem('userNotes', JSON.stringify(this.state.userNotes))
     auth.signOut()
   }
