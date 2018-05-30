@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import { Link } from 'react-router-dom'
 
 import quill from './quill.svg'
 import newIcon from './new.png'
@@ -12,17 +13,10 @@ const Sidebar = ({ resetCurrentNote, signOut }) => {
             <div className={css(styles.logo)}>
                 <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
             </div>
-            
-            <a 
-                className={css(styles.newNote)} 
-                href="/notes" 
-                onClick={(ev) => {
-                    ev.preventDefault()
-                    resetCurrentNote()}}
-                >
+            <Link to="/notes" className={css(styles.newNote)}>
                 <img src={newHover} alt="New note" className={css(styles.newNoteImg)}/>
                 <img src={newIcon} alt="New note" className={css(styles.newNoteImg, styles.newNoteImgHover)}/>
-            </a>
+            </Link>
 
             <div className={css(styles.signOut)}>
             <button 
