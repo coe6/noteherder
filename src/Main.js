@@ -41,42 +41,46 @@ class Main extends React.Component {
     }
 
     saveNote = (note) => {
+        let shouldRedirect = false
         const notes = [...this.state.notes]
 
         if(!note.id) {
             note.id = Date.now()
             notes.push(note)
+            shouldRedirect = true
         } else {
             const i = notes.findIndex((currentNote) => currentNote.id === note.id)
             notes[i] = note
         }
 
         this.setState({ notes })
-        this.setCurrentNote(note)
+        if(shouldRedirect) {
+            this.props.history.push(`/notes/${note.id}`)
+        }
     }
 
-    deleteNote = (note) => {
+    deleteNote = (currentNote) => {
         const notes = [...this.state.notes]
-        const index = notes.findIndex((currentNote => currentNote.id === note.id))
+        const id = this.props.match.params.id
+
+        const index = notes.findIndex((note => note.id === currentNote.id))
         if(index > -1) {
             notes.splice(index, 1)
             this.setState({ notes })
+            this.props.history.push(`/notes`)
         }
-
-        this.setCurrentNote(this.blankNote())
     }
 
     render() {
         const formProps = {
             currentNote: this.state.currentNote,
             saveNote: this.saveNote,
-            removeCurrentNote: this.removeCurrentNote,
+            deleteNote: this.deleteNote,
             notes: this.state.notes,
         }
         return (
             <div className="Main" style={style}>
-                <Sidebar 
-                    resetCurrentNote={this.resetCurrentNote} 
+                <Sidebar
                     signOut={this.props.signOut}
                 />
                 <NoteList 
