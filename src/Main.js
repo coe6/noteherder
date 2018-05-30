@@ -11,7 +11,6 @@ class Main extends React.Component {
     constructor() {
         super()
         this.state = {
-            currentNote: this.blankNote(),
             notes: [],
         }
     }
@@ -30,14 +29,6 @@ class Main extends React.Component {
                 title: '',
                 body: '',
         }
-    }
-
-    setCurrentNote = (note) => {
-        this.setState({ currentNote: note })
-    }
-
-    resetCurrentNote = () => {
-        this.setCurrentNote(this.blankNote())
     }
 
     saveNote = (note) => {
@@ -61,7 +52,6 @@ class Main extends React.Component {
 
     deleteNote = (currentNote) => {
         const notes = [...this.state.notes]
-        const id = this.props.match.params.id
 
         const index = notes.findIndex((note => note.id === currentNote.id))
         if(index > -1) {
@@ -73,7 +63,6 @@ class Main extends React.Component {
 
     render() {
         const formProps = {
-            currentNote: this.state.currentNote,
             saveNote: this.saveNote,
             deleteNote: this.deleteNote,
             notes: this.state.notes,
