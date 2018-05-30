@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
@@ -21,6 +22,14 @@ class Main extends React.Component {
             state: 'notes',
             asArray: true,
         })
+    }
+
+    blankNote = () => {
+        return {
+            id: null,
+                title: '',
+                body: '',
+        }
     }
 
     setCurrentNote = (note) => {
@@ -57,15 +66,13 @@ class Main extends React.Component {
         this.setCurrentNote(this.blankNote())
     }
 
-    blankNote = () => {
-        return {
-            id: null,
-                title: '',
-                body: '',
-        }
-    }
-
     render() {
+        const formProps = {
+            currentNote: this.state.currentNote,
+            saveNote: this.saveNote,
+            removeCurrentNote: this.removeCurrentNote,
+            notes: this.state.notes,
+        }
         return (
             <div className="Main" style={style}>
                 <Sidebar 
@@ -73,14 +80,27 @@ class Main extends React.Component {
                     signOut={this.props.signOut}
                 />
                 <NoteList 
-                    notes={this.state.notes} 
-                    setCurrentNote={this.setCurrentNote} 
+                    notes={this.state.notes}
                 />
-                <NoteForm 
-                    currentNote={this.state.currentNote} 
-                    saveNote={this.saveNote} 
-                    deleteNote={this.deleteNote}
-                />
+                <Switch>
+                    <Route 
+                        path="/notes/:id" 
+                        render={(navProps) => (
+                            <NoteForm
+                                {...formProps}
+                                {...navProps}
+                            />
+                        )}
+                    />
+                    <Route
+                        render={(navProps) => (
+                            <NoteForm
+                                {...formProps}
+                                {...navProps}
+                            />
+                        )}
+                    />
+                </Switch>
             </div>
         )
     }

@@ -2,14 +2,35 @@ import React from 'react'
 
 import './NoteForm.css'
 
-const NoteForm = ({ currentNote, saveNote, deleteNote }) => {
-    const handleChanges = (ev) => {
-        const note = {...currentNote}
-        note[ev.target.name] = ev.target.value
-        saveNote(note)
+class NoteForm extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            note: this.blankNote(),
+        }
     }
 
-    return (
+    blankNote = () => {
+        return {
+            id: null,
+                title: '',
+                body: '',
+        }
+    }
+
+    handleChanges = (ev) => {
+        const note = {...this.state.note}
+        note[ev.target.name] = ev.target.value
+        this.setState(
+            { note },
+            () => this.props.saveNote(note)
+        )
+    }
+
+    render() {
+        const { currentNote, deleteNote } = this.props
+        return (
         <div className="NoteForm" style={styles.noteForm}>
             <div className="form-actions" style={styles.formActions}>
                 <button type="button" style={styles.button} onClick={() => deleteNote(currentNote)}>
@@ -23,20 +44,21 @@ const NoteForm = ({ currentNote, saveNote, deleteNote }) => {
                         type="text" 
                         name="title" 
                         placeholder="Title your note" 
-                        value={currentNote.title}
-                        onChange={handleChanges}
+                        value={this.state.note.title}
+                        onChange={this.handleChanges}
                         style={styles.input}
                     />
                 </p>
                 <textarea 
                     name="body"
-                    value={currentNote.body}
-                    onChange={handleChanges}
+                    value={this.state.note.body}
+                    onChange={this.handleChanges}
                     style={styles.textArea}
                 ></textarea>
             </form>
         </div>
-    )
+        )
+    }
 }
 
 const styles = {
