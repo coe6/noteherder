@@ -22,10 +22,14 @@ class NoteForm extends React.Component {
     }
 
     blankNote = () => {
+        let date = new Date()
+        date = date.toUTCString()
+
         return {
             id: null,
             title: '',
             body: '',
+            timeStamp: date,
         }
     }
 

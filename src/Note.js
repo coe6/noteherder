@@ -9,6 +9,9 @@ const Note = ({ note }) => {
                     <div className="note-title">
                         {note.title}
                     </div>
+                    <div className="note-time">
+                        {note.timeStamp}
+                    </div>
                     <div className="note-body">
                         <p>
                             {note.body}

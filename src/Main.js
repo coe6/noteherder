@@ -21,13 +21,18 @@ class Main extends React.Component {
             state: 'notes',
             asArray: true,
         })
+
     }
 
     blankNote = () => {
+        let date = new Date()
+        date = date.toUTCString()
+
         return {
             id: null,
-                title: '',
-                body: '',
+            title: '',
+            body: '',
+            timeStamp: date,
         }
     }
 
@@ -35,19 +40,26 @@ class Main extends React.Component {
         let shouldRedirect = false
         const notes = [...this.state.notes]
 
+        let date = new Date()
+        date = date.toUTCString()
+
         if(!note.id) {
             note.id = Date.now()
+            note.timeStamp = date
             notes.push(note)
             shouldRedirect = true
         } else {
             const i = notes.findIndex((currentNote) => currentNote.id === note.id)
             notes[i] = note
+            notes[i].timeStamp = date
         }
 
         this.setState({ notes })
         if(shouldRedirect) {
             this.props.history.push(`/notes/${note.id}`)
         }
+
+        console.log(note)
     }
 
     deleteNote = (currentNote) => {
@@ -67,6 +79,7 @@ class Main extends React.Component {
             deleteNote: this.deleteNote,
             notes: this.state.notes,
         }
+
         return (
             <div className="Main" style={style}>
                 <Sidebar
